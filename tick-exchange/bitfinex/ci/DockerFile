@@ -1,0 +1,10 @@
+FROM openjdk:11
+
+RUN mkdir /opt/service
+
+WORKDIR /opt/service
+
+ARG APP_VERSION
+ADD http://192.168.120.55:8081/artifactory/libs-release/com/panxora/gravity/tick/tick-exchange-bitfinex-release/${APP_VERSION}/tick-exchange-bitfinex-release-${APP_VERSION}.jar /opt/service/release.jar
+
+ENTRYPOINT ["java","-jar", "release.jar"]

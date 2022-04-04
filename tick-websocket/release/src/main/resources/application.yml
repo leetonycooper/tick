@@ -1,0 +1,48 @@
+spring:
+  activemq:
+    broker-url: ${AMQ_URL}
+    user: ${AMQ_USER}
+    password: ${AMQ_PASSWORD}
+    non-blocking-redelivery: true
+    packages:
+      trust-all: true
+    pool:
+      block-if-full: true
+      block-if-full-timeout: -1
+      create-connection-on-startup: true
+      enabled: false
+      expiry-timeout: 0
+      idle-timeout: 30000
+      max-connections: 1
+      maximum-active-session-per-connection: 500
+      reconnect-on-exception: true
+      time-between-expiration-check: -1
+      use-anonymous-producers: true
+  jms:
+    listener:
+      acknowledge-mode: auto
+      auto-startup: true
+      concurrency: 1
+      max-concurrency: 1
+    pub-sub-domain: true
+    template:
+      default-destination:
+      delivery-mode: persistent
+      priority: 100
+      qos-enabled: true
+      receive-timeout: 1000
+      time-to-live: 36000
+
+com:
+  panxora:
+    gravity:
+      broker:
+        secrets:
+          basePath: ${BROKER_SECRETS_BASEPATH}
+
+logging:
+  level:
+    com:
+      panxora:
+        gravity: ${APP_LOG_LEVEL}
+    root: ${ROOT_LOG_LEVEL}

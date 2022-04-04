@@ -1,0 +1,51 @@
+spring:
+  # JSP MSSQL Configuration
+  datasource:
+    url: jdbc:h2:mem:symbolsdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+  # Embedded ActiveMQ Configuration
+  activemq:
+    broker-url: vm://embedded?broker.persistent=false,useShutdownHook=false
+    in-memory: true
+    non-blocking-redelivery: true
+    packages:
+      trust-all: true
+    pool:
+      block-if-full: true
+      block-if-full-timeout: -1
+      create-connection-on-startup: true
+      enabled: false
+      expiry-timeout: 0
+      idle-timeout: 30000
+      max-connections: 1
+      maximum-active-session-per-connection: 500
+      reconnect-on-exception: true
+      time-between-expiration-check: -1
+      use-anonymous-producers: true
+  jms:
+    listener:
+      acknowledge-mode: auto
+      auto-startup: true
+      concurrency: 1
+      max-concurrency: 1
+    pub-sub-domain: true
+    template:
+      default-destination:
+      delivery-mode: persistent
+      priority: 100
+      qos-enabled: true
+      receive-timeout: 1000
+      time-to-live: 36000
+
+logging:
+  level:
+    com:
+      panxora:
+        gravity: TRACE
